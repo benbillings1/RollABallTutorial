@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     public float speed;
     public Text countText;
     public Text winText;
+    public AudioClip pickUpSound;
 
     private Rigidbody rb;
     private int count;
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour {
             other.gameObject.SetActive(false);
             count = count + 1;
             SetCountText ();
+            GetComponent<AudioSource>().PlayOneShot(pickUpSound); 
         }
     }
 
