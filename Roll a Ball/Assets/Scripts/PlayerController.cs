@@ -10,11 +10,14 @@ public class PlayerController : MonoBehaviour {
     public Text winText;
     public AudioClip pickUpSound;
     public bool isGrounded;
-    public int jumpPower;
+    public float jumpPower = 3.0f;
 
     private Rigidbody rb;
     private int count;
-
+    private int nrOfAllowedDJumps = 1;
+    private int dJumpCounter = 0;
+    private Vector3 moveDirection = Vector3.zero;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -70,8 +73,11 @@ public class PlayerController : MonoBehaviour {
         {
             rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
             isGrounded = false;
+
         }
     }
+
+    
 }
 
 
