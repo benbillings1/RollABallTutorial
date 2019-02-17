@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
     public Text countText;
     public Text winText;
     public AudioClip pickUpSound;
+    public bool isGrounded;
+    public int jumpPower;
 
     private Rigidbody rb;
     private int count;
@@ -51,7 +53,27 @@ public class PlayerController : MonoBehaviour {
         }
             
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (!collision.gameObject.CompareTag("Ground"))
+        {
+            return;
+        }
+
+        isGrounded = true;
+    }
+
+    private void Update()
+    {
+        if(Input.GetButton("Jump") && isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            isGrounded = false;
+        }
+    }
 }
+
 
 
 
